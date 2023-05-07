@@ -1,0 +1,3 @@
+curl 'https://www.douban.com/people/labali/notes?start=0&type=note&_i=3461799nZDCOIK' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  --compressed

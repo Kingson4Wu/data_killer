@@ -17,6 +17,8 @@ legends = []
 
 for index in range(len(files)):
 
+    if os.path.splitext(files[index])[1] != '.csv':
+        continue
     legends.append(files[index].split('.')[0].split('-')[0])
     f = open('data/' + files[index], 'r')
     y = []

@@ -38,7 +38,8 @@ def get_data(url):
     return ls
 
 
-url = "https://www.douban.com/people/labali/notes?start={}&type=note&_i=3461799nZDCOIK,3461924nZDCOIK"
+url = "https://www.douban.com/people/labali/notes?start={}&type=note&_i=6670839nZDCOIK"
+
 
 start = 0
 result = ""

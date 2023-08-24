@@ -2,31 +2,30 @@
 
 import requests
 from lxml import html
-import pandas as pd
 import os
 
 etree = html.etree
 
-def create_directory(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
+from ..common import file
+
 
 def is_empty_or_whitespace(input_str):
     return len(input_str.strip()) == 0
+
 
 def download_mp3(url):
     # data = requests.get(url).text
     with open('./chapter3.html') as ff:
         data = ff.read()
-    #print(data)
+    # print(data)
     s = etree.HTML(data)
-    #ls = s.xpath('//div[@class="grid-view"]/div/div[1]/a/@title')
+    # ls = s.xpath('//div[@class="grid-view"]/div/div[1]/a/@title')
     ls = s.xpath('//ul[@class="smenu"]/dd/text()')
     dirs = []
     for item in ls:
         print(item)
         if not is_empty_or_whitespace(item) > 0:
-            create_directory(item)
+            file.create_directory(item)
             dirs.append(item)
 
     ls_mp3 = s.xpath('//div[@data-role="collapsibleset"]')
@@ -49,7 +48,7 @@ def download_mp3(url):
             response = requests.get(link, headers=header)
             if response.status_code == 200:
                 mp3_content = response.content
-                mp3_path = os.path.join(dirs[index], names[i]+'.mp3')
+                mp3_path = os.path.join(dirs[index], names[i] + '.mp3')
 
                 with open(mp3_path, "wb") as mp3_file:
                     mp3_file.write(mp3_content)
